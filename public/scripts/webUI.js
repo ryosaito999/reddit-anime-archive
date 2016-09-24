@@ -1,5 +1,5 @@
 var App = React.createClass({
-	var currentTitle = null;
+	//var currentTitle = null;
 
 	render: function(){
 		return (
@@ -10,14 +10,14 @@ var App = React.createClass({
 	}
 });
 
-var Header = React.createClass({
+// var Header = React.createClass({
 
-	render: function(){
-		return (
+// 	render: function(){
+// 		return (
 
-		);
-	}
-});
+// 		);
+// 	}
+// });
 
 var SearchForm = React.createClass({
 	
@@ -26,15 +26,28 @@ var SearchForm = React.createClass({
 	},
 
   	handleTitleChange: function(e) {
-  		this.setState( { author: e.title.value});
+  		this.setState( { title: e.target.value});
   	},
 
   	returnRedditJSONResult: function(title){
   		//reddit api comes in here
   		//make a GET request using the data
+  	},
 
-  		return "https://www.reddit.com/r/anime/search.json?q=" + title + "&sort=new"
-  	}, 
+  	returnJSON: function(url){
+  		var data = "";
+		//fetch api instead of ajax call (wanted to try it)
+		fetch(url).then(function(response) {
+  			//return response.json();
+		}).then(function(data) {
+			data = JSON.stringify(data) ;
+		}).catch(function(err) {
+			// Error :(
+		});
+
+		return data;
+
+  	},
 
 	handleSubmit: function(e){
 		e.preventDefault();
@@ -43,9 +56,11 @@ var SearchForm = React.createClass({
 		if(!title){
 			return;
 		}
+		console.log(title); 
+		var jsonData = this.returnJSON("https://www.reddit.com/r/anime/search.json?q=" + title + "&sort=new");
 
-		returnRedditJSONResult(title);
-
+		console.log(jsonData);
+  		//returnRedditJSONResult(title);
 		//this.props.onCommentSubmit({author: author, text:text});
 		//this.setState({title: ''});
 	},
@@ -67,24 +82,24 @@ var SearchForm = React.createClass({
 	}
 });
 
-var ThreadList = React.createClass({
-	//
-	render: function(){
-		return (
+// var ThreadList = React.createClass({
+// 	//
+// 	render: function(){
+// 		return (
 
-		);
-	}
-});
+// 		);
+// 	}
+// });
 
 
-var Thread = React.createClass({
+// var Thread = React.createClass({
 
-	render: function(){
-		return (
+// 	render: function(){
+// 		return (
 
-		);
-	}
-});
+// 		);
+// 	}
+// });
 
 
 
