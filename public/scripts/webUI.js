@@ -11,26 +11,46 @@ var App = React.createClass({
 	},
 
 	getResourceURL: function(title){
-		return "https://www.reddit.com/r/anime/search.json?q=" + title +" &restrict_sr=on&sort=relevance&t=all";
+		return "https://www.reddit.com/r/anime/search.json?q=" + title +"+AND+discussion+AND+episode+NOT+rewatch&restrict_sr=on&sort=relevance&t=all";
 	},
 
 	getPicture: function(full_title){
-
+		//add some sort of anime db search here (not sure where to get it...)
 	},
+
+
 
 	onSubmit: function(discussionTitle){
 		var discussionThreadList = [];
-		//console.log(this.getResourceURL(discussionTitle.title));
-			
+
         $.ajax({
             type: 'get',
             url: this.getResourceURL(discussionTitle.title),
             async: false,
             success: function(data) {
-				console.log(JSON.stringify(data));
+				//testing json data 				
+				var threadList = data.data.children;
+				//console.log(threadList);
+				for(var i =0 ; i < threadList.length ; ++i){
+
+					var obj = { 
+							title: JSON.stringify(threadList[i].data.title),
+							url: JSON.stringify(threadList[i].data.url),
+							date: parseInt(JSON.stringify(threadList[i].data.created_utc))
+					}
+
+					discussionThreadList.push(obj);
+				}
 
             }
         });
+
+        
+        discussionThreadList.sort(function(a, b) {
+   			return parseFloat(a.date) - parseFloat(b.date);
+		});
+
+        console.log(discussionThreadList);
 
 
 	},
@@ -47,6 +67,8 @@ var App = React.createClass({
 
 
 });
+
+
 
 // var Header = React.createClass({
 
