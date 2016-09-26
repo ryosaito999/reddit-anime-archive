@@ -1,13 +1,51 @@
 var App = React.createClass({
 	//var currentTitle = null;
 
+	getInitialState: function() {
+		return {
+			titleActive: false,
+			discussionTitle: null,
+			discussionList: null,
+
+		};
+	},
+
+	getResourceURL: function(title){
+		return "https://www.reddit.com/r/anime/search.json?q=" + title +" &restrict_sr=on&sort=relevance&t=all";
+	},
+
+	getPicture: function(full_title){
+
+	},
+
+	onSubmit: function(discussionTitle){
+		var discussionThreadList = [];
+		//console.log(this.getResourceURL(discussionTitle.title));
+			
+        $.ajax({
+            type: 'get',
+            url: this.getResourceURL(discussionTitle.title),
+            async: false,
+            success: function(data) {
+				console.log(JSON.stringify(data));
+
+            }
+        });
+
+
+	},
+
 	render: function(){
 		return (
 			<div>
-				<SearchForm />
+				<SearchForm onFormSubmit = {this.onSubmit} />
 			</div>
 		);
 	}
+
+
+
+
 });
 
 // var Header = React.createClass({
@@ -35,18 +73,7 @@ var SearchForm = React.createClass({
   	},
 
   	returnJSON: function(url){
-  		var data = "";
-		//fetch api instead of ajax call (wanted to try it)
-		fetch(url).then(function(response) {
-  			//return response.json();
-		}).then(function(data) {
-			data = JSON.stringify(data) ;
-		}).catch(function(err) {
-			// Error :(
-		});
-
-		return data;
-
+  		
   	},
 
 	handleSubmit: function(e){
@@ -56,13 +83,8 @@ var SearchForm = React.createClass({
 		if(!title){
 			return;
 		}
-		console.log(title); 
-		var jsonData = this.returnJSON("https://www.reddit.com/r/anime/search.json?q=" + title + "&sort=new");
 
-		console.log(jsonData);
-  		//returnRedditJSONResult(title);
-		//this.props.onCommentSubmit({author: author, text:text});
-		//this.setState({title: ''});
+		this.props.onFormSubmit({ title: title })
 	},
 
 	render: function(){
