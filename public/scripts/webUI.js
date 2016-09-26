@@ -11,7 +11,7 @@ var App = React.createClass({
 	},
 
 	getResourceURL: function(title){
-		return "https://www.reddit.com/r/anime/search.json?q=" + title +"+AND+discussion+AND+episode+NOT+rewatch&restrict_sr=on&sort=relevance&t=all";
+		return "https://www.reddit.com/r/anime/search.json?q=title:" + title + "+AND+discussion+AND+episode+AND+Spoilers%29+AND+%28+NOT+rewatch+NOT+trivia%29&restrict_sr=on&sort=relevance&t=all&limit=100"
 	},
 
 	getPicture: function(full_title){
@@ -30,28 +30,28 @@ var App = React.createClass({
             success: function(data) {
 				//testing json data 				
 				var threadList = data.data.children;
-				//console.log(threadList);
+				console.log(threadList);
 				for(var i =0 ; i < threadList.length ; ++i){
 
+					//push these discussions into list using objs
 					var obj = { 
-							title: JSON.stringify(threadList[i].data.title),
-							url: JSON.stringify(threadList[i].data.url),
+							title: threadList[i].data.title,
+							url: threadList[i].data.url,
 							date: parseInt(JSON.stringify(threadList[i].data.created_utc))
 					}
 
 					discussionThreadList.push(obj);
 				}
-
             }
         });
 
-        
+        //sort threads by oldest first (dont need to parse in episode titles :D)
         discussionThreadList.sort(function(a, b) {
    			return parseFloat(a.date) - parseFloat(b.date);
 		});
 
         console.log(discussionThreadList);
-
+        this.setState('discussionList': discussionThreadList );
 
 	},
 
@@ -68,16 +68,6 @@ var App = React.createClass({
 
 });
 
-
-
-// var Header = React.createClass({
-
-// 	render: function(){
-// 		return (
-
-// 		);
-// 	}
-// });
 
 var SearchForm = React.createClass({
 	
@@ -125,6 +115,34 @@ var SearchForm = React.createClass({
 		);
 	}
 });
+
+
+
+var ThreadListing= React.createClass({
+
+	getInitialState: function(){
+		return {
+			//title: ''
+		} ;
+	},
+
+
+	render: function(){
+		return (
+
+		);
+	}
+});
+
+var ThreadListing= React.createClass({
+
+	render: function(){
+		return (
+
+		);
+	}
+});
+
 
 // var ThreadList = React.createClass({
 // 	//
