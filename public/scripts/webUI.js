@@ -51,7 +51,7 @@ var App = React.createClass({
 		});
 
         console.log(discussionThreadList);
-        this.setState('discussionList': discussionThreadList );
+        this.setState({'discussionList': discussionThreadList} );
 
 	},
 
@@ -62,8 +62,6 @@ var App = React.createClass({
 			</div>
 		);
 	}
-
-
 
 
 });
@@ -128,18 +126,18 @@ var ThreadListing= React.createClass({
 
 
 	render: function(){
-		return (
+		return {
 
-		);
+		};
 	}
 });
 
 var ThreadListing= React.createClass({
 
 	render: function(){
-		return (
-
-		);
+		return {
+			
+		};
 	}
 });
 
