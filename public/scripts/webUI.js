@@ -4,8 +4,8 @@ var App = React.createClass({
 	getInitialState: function() {
 		return {
 			titleActive: false,
-			discussionTitle: null,
-			discussionList: null,
+			discussionTitle: "",
+			discussionList: [],
 
 		};
 	},
@@ -21,7 +21,9 @@ var App = React.createClass({
 
 
 	onSubmit: function(discussionTitle){
+
 		var discussionThreadList = [];
+		var title = "aaaaa";
 
         $.ajax({
             type: 'get',
@@ -30,7 +32,7 @@ var App = React.createClass({
             success: function(data) {
 				//testing json data 				
 				var threadList = data.data.children;
-				console.log(threadList);
+				//console.log(threadList);
 				for(var i =0 ; i < threadList.length ; ++i){
 
 					//push these discussions into list using objs
@@ -51,14 +53,16 @@ var App = React.createClass({
 		});
 
         console.log(discussionThreadList);
-        this.setState({'discussionList': discussionThreadList} );
+        this.setState({'discussionList': discussionThreadList, 'titleActive': true, 'discussionTitle': discussionTitle.title } );
 
 	},
 
 	render: function(){
 		return (
-			<div>
+			<div className = "App">
 				<SearchForm onFormSubmit = {this.onSubmit} />
+                <ThreadListing dataList = {this.state.discussionList} currentTitle = {this.state.discussionTitle} />
+
 			</div>
 		);
 	}
@@ -102,7 +106,7 @@ var SearchForm = React.createClass({
 			<form className="SearchForm" onSubmit={this.handleSubmit}>
 				<input
 					type="text"
-					placeholder = "Enter an anime title"
+					placeholder = "Enterpran anime title"
 					value = {this.state.title}
 					onChange = {this.handleTitleChange} 
 				/>
@@ -116,30 +120,44 @@ var SearchForm = React.createClass({
 
 
 
-var ThreadListing= React.createClass({
-
-	getInitialState: function(){
-		return {
-			//title: ''
-		} ;
-	},
-
-
+var ThreadListing = React.createClass({
 	render: function(){
-		return {
 
-		};
+		var currentTitle = this.props.currentTitle;
+		var threadNodes = this.props.dataList.map(
+			function(node){	
+				return(
+					//<div> {node.title} </div>
+					<ul><li><a href={node.url} > {node.title} </a></li></ul>
+
+				);
+			}
+		);
+
+		//console.log( this.props.dataList);
+		
+		return (
+			<div className = "ThreadListing">
+				<h1> {currentTitle} </h1>
+				{threadNodes}
+			</div>
+		);
 	}
 });
 
-var ThreadListing= React.createClass({
 
-	render: function(){
-		return {
-			
-		};
-	}
-});
+// var Thread= React.createClass({
+
+// 	render: function(){
+// 		return (
+// 				<div className = "Thread">
+// 					<h2 className = "ThreadName">
+// 						{this.props.name}
+// 					</h2>
+// 				</div>
+// 			);
+// 	}
+// });
 
 
 // var ThreadList = React.createClass({
