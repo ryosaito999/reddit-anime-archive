@@ -1,55 +1,14 @@
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+# Reddit anime discussion thread archive
 
-# React Tutorial
+Simply enter a title into the search bar and the site will try to automatically find all discussion threads of the entered show. 
 
-This is the React comment box example from [the React tutorial](http://facebook.github.io/react/docs/tutorial.html).
+# Whats the point?
 
-## To use
+This started as a simple project to take on after finishing Facebook's react js tutorial ( https://facebook.github.io/react/docs/getting-started.html). This is also my first static javascript website as well. This was made as a challenge to see if I could replicate https://www.reddit.com/r/anime subreddit anime archive through the use of javascript, rather than using the subreddit's self entered archive. 
 
-There are several simple server implementations included. They all serve static files from `public/` and handle requests to `/api/comments` to fetch or add data. Start a server with one of the following:
+# Design
+(Shoutouts to https://github.com/Antrikshy/The-MCU-Index for giving me an example) 
 
-### Node
+RADA is built as a static react js website. When the user enters a prompt into the serachbox, it uses reddit API to perform a search and filter out all non episode discussion threads as best it can. I run an additional regex parser to filter any non matching thread titles and return the rest to the user. 
 
-```sh
-npm install
-node server.js
-```
-
-### Python
-
-```sh
-pip install -r requirements.txt
-python server.py
-```
-
-### Ruby
-```sh
-ruby server.rb
-```
-
-### PHP
-```sh
-php server.php
-```
-
-### Go
-```sh
-go run server.go
-```
-
-### Perl
-
-```sh
-cpan Mojolicious
-perl server.pl
-```
-
-And visit <http://localhost:3000/>. Try opening multiple tabs!
-
-## Changing the port
-
-You can change the port number by setting the `$PORT` environment variable before invoking any of the scripts above, e.g.,
-
-```sh
-PORT=3001 node server.js
-```
+The search box adapts typeahead, which is currently using a manually entered data set inside data.js. For now, update data.js to change the results typeahead will try to look for.
