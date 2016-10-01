@@ -11,7 +11,7 @@ var App = React.createClass({
 	},
 
 	getResourceURL: function(title){
-		return "https://www.reddit.com/r/anime/search.json?q=title:" + title + "+AND+discussion+AND+episode+AND+Spoilers%29+AND+%28+NOT+rewatch+NOT+trivia%29&restrict_sr=on&sort=relevance&t=all&limit=100"
+		return "https://www.reddit.com/r/anime/search.json?q=title:" + title + "+AND+discussion&restrict_sr=on&sort=relevance&t=all&limit=100"
 	},
 
 	getPicture: function(full_title){
@@ -23,7 +23,7 @@ var App = React.createClass({
 	onSubmit: function(discussionTitle){
 
 		var discussionThreadList = [];
-		var title = "aaaaa";
+		var title = "";
 
         $.ajax({
             type: 'get',
@@ -98,7 +98,10 @@ var SearchForm = React.createClass({
 			return;
 		}
 
-		this.props.onFormSubmit({ title: title })
+		//send title to main app root class 
+		this.props.onFormSubmit({ title: title });
+		this.setState({title: ""});
+
 	},
 
 	render: function(){
@@ -106,7 +109,7 @@ var SearchForm = React.createClass({
 			<form className="SearchForm" onSubmit={this.handleSubmit}>
 				<input
 					type="text"
-					placeholder = "Enterpran anime title"
+					placeholder = "Enter an anime title"
 					value = {this.state.title}
 					onChange = {this.handleTitleChange} 
 				/>
@@ -127,9 +130,7 @@ var ThreadListing = React.createClass({
 		var threadNodes = this.props.dataList.map(
 			function(node){	
 				return(
-					//<div> {node.title} </div>
-					<ul><li><a href={node.url} > {node.title} </a></li></ul>
-
+			        <Thread title={node.title} url = {node.url }key={node.id}> </Thread>
 				);
 			}
 		);
@@ -146,19 +147,17 @@ var ThreadListing = React.createClass({
 });
 
 
-// var Thread= React.createClass({
 
-// 	render: function(){
-// 		return (
-// 				<div className = "Thread">
-// 					<h2 className = "ThreadName">
-// 						{this.props.name}
-// 					</h2>
-// 				</div>
-// 			);
-// 	}
-// });
-
+var Thread = React.createClass({
+	render: function(){
+		
+		return (
+			<div className = "Thread">
+				<ul><li><a href={this.props.url}>{this.props.title}</a></li></ul>
+			</div>
+		);
+	}
+});
 
 // var ThreadList = React.createClass({
 // 	//
