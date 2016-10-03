@@ -58,3 +58,7 @@ p, ul {
 ul {
   padding-left: 30px;
 }
+
+form{
+    text-align: center;
+}

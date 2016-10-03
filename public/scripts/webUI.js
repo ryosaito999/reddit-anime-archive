@@ -60,6 +60,7 @@ var App = React.createClass({
 	render: function(){
 		return (
 			<div className = "App">
+				
 				<SearchForm onFormSubmit = {this.onSubmit} />
                 <ThreadListing dataList = {this.state.discussionList} currentTitle = {this.state.discussionTitle} />
 
@@ -130,11 +131,10 @@ var ThreadListing = React.createClass({
 		var threadNodes = this.props.dataList.map(
 			function(node){	
 				return(
-			        <Thread title={node.title} url = {node.url }key={node.id}> </Thread>
+			        <Thread title={node.title} key = {node.url } > </Thread>
 				);
 			}
 		);
-
 		//console.log( this.props.dataList);
 		
 		return (
@@ -151,7 +151,6 @@ var Thread = React.createClass({
 		return (
 			<div className = "Thread">
 				<ul><li><a href={this.props.url}>{this.props.title}</a></li></ul>
-
 			</div>
 		);
 	}
