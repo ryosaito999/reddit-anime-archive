@@ -18,3 +18,14 @@ a:hover {
 }
 
 
+form{
+
+    width: 100%;
+    border: 2px solid red;
+    border-radius: 4px;
+
+}
+
+.inputBox{
+    width: 75%;
+}

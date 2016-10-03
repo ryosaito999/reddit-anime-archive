@@ -107,15 +107,11 @@ var SearchForm = React.createClass({
 
 	render: function(){
 
-		var formStyle = {
-        	textAlign: "center",
-   			margin: this.state.margin
-		};
-
 
 		return (
-			<form className="SearchForm" onSubmit={this.handleSubmit} style = {formStyle}>
+			<form className="SearchForm" onSubmit={this.handleSubmit} >
 				<input
+					className = "inputBox"
 					type="text"
 					placeholder = "Enter an anime title"
 					value = {this.state.title}
