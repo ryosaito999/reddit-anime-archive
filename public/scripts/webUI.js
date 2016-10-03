@@ -75,7 +75,7 @@ var App = React.createClass({
 var SearchForm = React.createClass({
 	
   	getInitialState: function(){
-		return {title: ''} ;
+		return {margin: 20 , title: ''} ;
 	},
 
   	handleTitleChange: function(e) {
@@ -101,7 +101,7 @@ var SearchForm = React.createClass({
 
 		//send title to main app root class 
 		this.props.onFormSubmit({ title: title });
-		this.setState({title: ""});
+		this.setState({title: "", margin: 0});
 
 	},
 
@@ -109,7 +109,7 @@ var SearchForm = React.createClass({
 
 		var formStyle = {
         	textAlign: "center",
-   			margin: 10
+   			margin: this.state.margin
 		};
 
 
