@@ -5,27 +5,22 @@ body {
   font-size: 15px;
   line-height: 1.7;
   margin: 0;
-  padding: 30px;
 }
 
-a {
-  color: #4183c4;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-
-form{
-
-    width: 100%;
-    border: 2px solid red;
-    border-radius: 4px;
+h2 {
+  font: 39px
 
 }
 
-.inputBox{
-    width: 75%;
+.header {
+  background: #ff0;
+  height: 100%;
+  width: 100%;
+}
+
+.title{
+}
+
+.explanation{
+
 }

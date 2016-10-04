@@ -3,7 +3,7 @@ var App = React.createClass({
 
 	getInitialState: function() {
 		return {
-			titleActive: false,
+			headerOn: true,
 			discussionTitle: "",
 			discussionList: [],
 
@@ -17,7 +17,6 @@ var App = React.createClass({
 	getPicture: function(full_title){
 		//add some sort of anime db search here (not sure where to get it...)
 	},
-
 
 
 	onSubmit: function(discussionTitle){
@@ -53,14 +52,17 @@ var App = React.createClass({
 		});
 
         console.log(discussionThreadList);
-        this.setState({'discussionList': discussionThreadList, 'titleActive': true, 'discussionTitle': discussionTitle.title } );
-
+        this.setState({'discussionList': discussionThreadList, 'headerOn': false, 'discussionTitle': discussionTitle.title } );
 	},
 
 	render: function(){
+
+		var headerOn = this.state.headerOn ? <Header /> : '';
+
+
 		return (
 			<div className = "App">
-				
+				{headerOn}
 				<SearchForm onFormSubmit = {this.onSubmit} />
                 <ThreadListing dataList = {this.state.discussionList} currentTitle = {this.state.discussionTitle} />
 
@@ -70,6 +72,21 @@ var App = React.createClass({
 
 
 });
+
+var Header  = React.createClass({
+ 
+
+	render: function(){
+		return (
+			<div className = "header" ref="textHeader" >
+				<h2>R/Anime Discussion Archive</h2>
+				<p>Find any past discussion thread of any anime perviously posted on reddit's anime subreddit. </p>
+				<p>Enter an anime title and hit serach!</p>
+			</div>
+		);
+	}
+});
+
 
 
 var SearchForm = React.createClass({
@@ -107,11 +124,18 @@ var SearchForm = React.createClass({
 
 	render: function(){
 
+		//use inline on componets that will change w/ event triggers
+		var formStyle = {
+
+		    width: "100%"
+
+		}
 
 		return (
 			<form className="SearchForm" onSubmit={this.handleSubmit} >
 				<input
 					className = "inputBox"
+					ref = "inputTest"
 					type="text"
 					placeholder = "Enter an anime title"
 					value = {this.state.title}
