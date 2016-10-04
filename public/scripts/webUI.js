@@ -51,14 +51,14 @@ var App = React.createClass({
    			return parseFloat(a.date) - parseFloat(b.date);
 		});
 
-        console.log(discussionThreadList);
+        //console.log(discussionThreadList);
+        //update states
         this.setState({'discussionList': discussionThreadList, 'headerOn': false, 'discussionTitle': discussionTitle.title } );
 	},
 
 	render: function(){
-
+		//turn off header once user seraches for anime
 		var headerOn = this.state.headerOn ? <Header /> : '';
-
 
 		return (
 			<div className = "App">
@@ -74,12 +74,11 @@ var App = React.createClass({
 });
 
 var Header  = React.createClass({
- 
 
 	render: function(){
 		return (
 			<div className = "header" ref="textHeader" >
-				<h2>R/Anime Discussion Archive</h2>
+				<h1>R/Anime Discussion Archive</h1>
 				<p>Find any past discussion thread of any anime perviously posted on reddit's anime subreddit. </p>
 				<p>Enter an anime title and hit serach!</p>
 			</div>
