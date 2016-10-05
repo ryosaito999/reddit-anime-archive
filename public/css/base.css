@@ -8,17 +8,64 @@ body {
 }
 
 h1 {
-  font-size: 46px
+  font-size: 46px;
+  margin-top: 0;   
+  margin-bottom: 5px;   
+
+}
+
+p{
+  margin-top: 0;   
+  font-size: 22px;
+  margin-bottom: 9px;   
+
 }
 
 .header {
   background: #ff0;
   height: 100%;
   width: 100%;
+  padding-top:5px;
+  padding-bottom: 10px;
 }
 
-.title{
+.searchArea{
+  padding-top: 20px;
 }
+
+.searchForm{
+    margin:0 auto
+}
+
+.inputBox{
+  height: 30px;
+  width: 50%;
+  font-size: 18px;
+}
+
+.submit{
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+
+}
+
+input[type=submit] {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
 
 .explanation{
 

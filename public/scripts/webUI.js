@@ -63,7 +63,9 @@ var App = React.createClass({
 		return (
 			<div className = "App">
 				{headerOn}
-				<SearchForm onFormSubmit = {this.onSubmit} />
+				<div className = "searchArea">
+					<SearchForm onFormSubmit = {this.onSubmit} />
+				</div>
                 <ThreadListing dataList = {this.state.discussionList} currentTitle = {this.state.discussionTitle} />
 
 			</div>
@@ -123,25 +125,18 @@ var SearchForm = React.createClass({
 
 	render: function(){
 
-		//use inline on componets that will change w/ event triggers
-		var formStyle = {
-
-		    width: "100%"
-
-		}
-
 		return (
 			<form className="SearchForm" onSubmit={this.handleSubmit} >
 				<input
 					className = "inputBox"
-					ref = "inputTest"
+					ref = "input"
 					type="text"
 					placeholder = "Enter an anime title"
 					value = {this.state.title}
 					onChange = {this.handleTitleChange} 
 				/>
 
-				<input type= "submit" value = "Post" />
+				<input className="searchButton" type= "submit" value = "Post" />
 			</form>
 
 		);
