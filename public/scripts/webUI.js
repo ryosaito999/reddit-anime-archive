@@ -80,9 +80,12 @@ var Header  = React.createClass({
 	render: function(){
 		return (
 			<div className = "header" ref="textHeader" >
-				<h1>R/Anime Discussion Archive</h1>
-				<p>Find any past discussion thread of any anime perviously posted on reddit's anime subreddit. </p>
-				<p>Enter an anime title and hit serach!</p>
+				<div className = "headerText">
+					<h1>R/Anime Discussion Archive</h1>
+					<p>Find any past discussion thread of any anime perviously posted on reddit's anime subreddit. </p>
+					<p>Enter an anime title and hit serach!</p>
+				</div>
+
 			</div>
 		);
 	}
@@ -126,7 +129,7 @@ var SearchForm = React.createClass({
 	render: function(){
 
 		return (
-			<form className="SearchForm" onSubmit={this.handleSubmit} >
+			<form className="searchForm" onSubmit={this.handleSubmit} >
 				<input
 					className = "inputBox"
 					ref = "input"
@@ -136,9 +139,8 @@ var SearchForm = React.createClass({
 					onChange = {this.handleTitleChange} 
 				/>
 
-				<input className="searchButton" type= "submit" value = "Post" />
+				<input className="submitBtn" type= "submit" value = "Post" />
 			</form>
-
 		);
 	}
 });

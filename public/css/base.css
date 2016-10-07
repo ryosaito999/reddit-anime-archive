@@ -33,33 +33,34 @@ p{
   padding-top: 20px;
 }
 
+.headerText{
+  margin-left: 33px;
+}
+
+
+
 .searchForm{
-    margin:0 auto
+    margin-left: 75px;
+
 }
 
 .inputBox{
-  height: 30px;
+  height: 38px;
   width: 50%;
   font-size: 18px;
-}
-
-.submit{
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+  border-radius: 5px;
+  border: 2px solid;
 
 }
 
-input[type=submit] {
+
+.submitBtn  {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    padding: 15px 32px;
+    height: 38px;
+    padding: 8px;
+    margin-left: 15px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
