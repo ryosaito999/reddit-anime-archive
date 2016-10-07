@@ -83,6 +83,21 @@ footer{
   background: #ff0;
 
   font-size: 12px;
+
+}
+
+.reactLogo{
+ width:100px;
+ height:27px; 
+ vertical-align: middle;
+}
+
+.leftAlign{
+  text-align: left;
+
+}
+
+.rightAlign{
   text-align: right;
 
 }
