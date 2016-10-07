@@ -38,7 +38,8 @@ var App = React.createClass({
 					var obj = { 
 							title: threadList[i].data.title,
 							url: threadList[i].data.url,
-							date: parseInt(JSON.stringify(threadList[i].data.created_utc))
+							date: parseInt(JSON.stringify(threadList[i].data.created_utc)),
+							score: threadList[i].data.score
 					}
 
 					discussionThreadList.push(obj);
@@ -154,7 +155,7 @@ var ThreadListing = React.createClass({
 		var threadNodes = this.props.dataList.map(
 			function(node){	
 				return(
-			        <Thread title={node.title} key = {node.url } > </Thread>
+			        <Thread title={node.title} key = {node.url} score = {node.score} date = {node.date} > </Thread>
 				);
 			}
 		);
