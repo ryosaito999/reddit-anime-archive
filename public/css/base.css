@@ -78,5 +78,11 @@ footer{
   left:0;
   right:0;
   height:30px;
+  line-height: 30px;
   width: 100%;
+  background: #ff0;
+
+  font-size: 12px;
+  text-align: right;
+
 }
