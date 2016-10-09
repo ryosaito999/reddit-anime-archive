@@ -81,7 +81,6 @@ footer{
   line-height: 30px;
   width: 100%;
   background: #ff0;
-
   font-size: 12px;
 
 }
@@ -92,12 +91,12 @@ footer{
  vertical-align: middle;
 }
 
-.leftAlign{
-  text-align: left;
+.left{
+    float:left;
 
 }
 
-.rightAlign{
-  text-align: right;
+.right{
+    float:right;
 
 }
