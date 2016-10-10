@@ -18,7 +18,6 @@ var App = React.createClass({
 		//add some sort of anime db search here (not sure where to get it...)
 	},
 
-
 	onSubmit: function(discussionTitle){
 
 		var discussionThreadList = [];
@@ -31,7 +30,7 @@ var App = React.createClass({
             success: function(data) {
 				//testing json data 				
 				var threadList = data.data.children;
-				//console.log(threadList);
+				console.log(threadList);
 				for(var i =0 ; i < threadList.length ; ++i){
 
 					//push these discussions into list using objs
@@ -39,8 +38,11 @@ var App = React.createClass({
 							title: threadList[i].data.title,
 							url: threadList[i].data.url,
 							date: parseInt(JSON.stringify(threadList[i].data.created_utc)),
-							score: threadList[i].data.score
+							score: threadList[i].data.score,
+							key: threadList[i].id
 					}
+
+					//console.log(obj.url)
 
 					discussionThreadList.push(obj);
 				}
@@ -146,8 +148,6 @@ var SearchForm = React.createClass({
 	}
 });
 
-
-
 var ThreadListing = React.createClass({
 	render: function(){
 
@@ -155,13 +155,15 @@ var ThreadListing = React.createClass({
 		var threadNodes = this.props.dataList.map(
 			function(node){	
 				return(
-			        <Thread title={node.title} key = {node.url} score = {node.score} date = {node.date} > </Thread>
+			        <Thread title={node.title} url = {node.url} score = {node.score} date = {node.date} key = {node.key}> </Thread>
 				);
 			}
 		);
 		//console.log( this.props.dataList);
 		
 		return (
+
+
 			<div className = "ThreadListing">
 				<h1> {currentTitle} </h1>
 				{threadNodes}
@@ -174,34 +176,11 @@ var Thread = React.createClass({
 		
 		return (
 			<div className = "Thread">
-				<ul><li><a href={this.props.url}>{this.props.title}</a></li></ul>
+				<ul><li><a href={this.props.url} >{this.props.title}</a></li></ul>
 			</div>
 		);
 	}
 });
-
-
-// var ThreadList = React.createClass({
-// 	//
-// 	render: function(){
-// 		return (
-
-// 		);
-// 	}
-// });
-
-
-// var Thread = React.createClass({
-
-// 	render: function(){
-// 		return (
-
-// 		);
-// 	}
-// });
-
-
-
 
 ReactDOM.render(
 	<App />, 
