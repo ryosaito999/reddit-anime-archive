@@ -24,7 +24,7 @@ p{
 
 
 .header {
-  background: #ff0;
+  background: #2196F3;
   height: 100%;
   width: 100%;
   padding-top:5px;
@@ -74,6 +74,15 @@ p{
 
 }
 
+.ThreadListing{
+  padding-left: 75px;
+}
+
+.title{
+  margin-top: 20px;
+  margin-bottom: 90px;
+}
+
 footer{
   position:fixed;
   bottom:0;
@@ -82,7 +91,7 @@ footer{
   height:30px;
   line-height: 30px;
   width: 100%;
-  background: #ff0;
+  background:#4CAF50;
   font-size: 12px;
 
 }

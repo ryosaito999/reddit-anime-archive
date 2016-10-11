@@ -11,7 +11,7 @@ var App = React.createClass({
 	},
 
 	getResourceURL: function(title){
-		return "https://www.reddit.com/r/anime/search.json?q=title:" + title + "+AND+discussion&restrict_sr=on&sort=relevance&t=all&limit=100"
+		return "https://www.reddit.com/r/anime/search.json?q=title:" + title + "+AND+discussion+NOT+rewatch+NOT+dub&restrict_sr=on&sort=relevance&t=all&limit=100"
 	},
 
 	getPicture: function(full_title){
@@ -32,19 +32,25 @@ var App = React.createClass({
 				var threadList = data.data.children;
 				console.log(threadList);
 				for(var i =0 ; i < threadList.length ; ++i){
+					var title = threadList[i].data.title;
+					console.log(title);
+					var regex =  /.*(Episode|OVA).*\d+\s+.*discussion/i
+					
+					if(regex.test(title)){
 
-					//push these discussions into list using objs
-					var obj = { 
-							title: threadList[i].data.title,
-							url: threadList[i].data.url,
-							date: parseInt(JSON.stringify(threadList[i].data.created_utc)),
-							score: threadList[i].data.score,
-							key: threadList[i].id
+						//push these discussions into list using objs
+						var obj = { 
+								title: threadList[i].data.title,
+								url: threadList[i].data.url,
+								date: parseInt(JSON.stringify(threadList[i].data.created_utc)),
+								score: threadList[i].data.score,
+								key: threadList[i].id
+						}
+
+						//console.log(obj.url)
+
+						discussionThreadList.push(obj);
 					}
-
-					//console.log(obj.url)
-
-					discussionThreadList.push(obj);
 				}
             }
         });
@@ -65,7 +71,7 @@ var App = React.createClass({
 
 		return (
 			<div className = "App">
-				{headerOn}
+				<Header/>
 				<div className = "searchArea">
 					<SearchForm onFormSubmit = {this.onSubmit} />
 				</div>
@@ -78,12 +84,14 @@ var App = React.createClass({
 
 });
 
+
 var Header  = React.createClass({
 
 	render: function(){
 		return (
 			<div className = "header" ref="textHeader" >
 				<div className = "headerText">
+
 					<h1>R/Anime Discussion Archive</h1>
 					<p>Find any past discussion thread of any anime perviously posted on reddit's anime subreddit. </p>
 					<p>Enter an anime title and hit serach!</p>
@@ -162,10 +170,12 @@ var ThreadListing = React.createClass({
 		//console.log( this.props.dataList);
 		
 		return (
-
-
 			<div className = "ThreadListing">
-				<h1> {currentTitle} </h1>
+				<div className = "title">
+					<h1> {currentTitle} </h1>
+				</div>
+
+				<hr/>
 				{threadNodes}
 			</div>
 		);
@@ -176,7 +186,7 @@ var Thread = React.createClass({
 		
 		return (
 			<div className = "Thread">
-				<ul><li><a href={this.props.url} >{this.props.title}</a></li></ul>
+				<a href={this.props.url} >{this.props.title}</a>
 			</div>
 		);
 	}
