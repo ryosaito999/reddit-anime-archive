@@ -23,21 +23,6 @@ var App = React.createClass({
 		var discussionThreadList = [];
 		var title = "";
 
-
-		//thinking about MAL API
- 		$.ajax({
-            type: 'get',
-            url: "https://myanimelist.net/api/anime/search.xml?q=bleach",
-            username: "Susushy",
-	  		password: "sfamily2r",
-            async: false,
-            success: function(data) {
-				//testing json data 				
-						console.log(data);
-				}
-			
-            
-        });
         $.ajax({
             type: 'get',
             url: this.getResourceURL(discussionTitle.title),
