@@ -11,7 +11,7 @@ var App = React.createClass({
 	},
 
 	getResourceURL: function(title){
-		return "https://www.reddit.com/r/anime/search.json?q=title:" + title + "+AND+discussion+NOT+rewatch+NOT+dub&restrict_sr=on&sort=relevance&t=all&limit=100"
+		return "https://www.reddit.com/r/anime/search.json?q=title:" + title + "+AND+discussion+NOT+rewatch+NOT+dub+NOT+only&restrict_sr=on&sort=relevance&t=all&limit=100"
 	},
 
 	getPicture: function(full_title){
@@ -23,6 +23,21 @@ var App = React.createClass({
 		var discussionThreadList = [];
 		var title = "";
 
+
+		//thinking about MAL API
+ 		$.ajax({
+            type: 'get',
+            url: "https://myanimelist.net/api/anime/search.xml?q=bleach",
+            username: "Susushy",
+	  		password: "sfamily2r",
+            async: false,
+            success: function(data) {
+				//testing json data 				
+						console.log(data);
+				}
+			
+            
+        });
         $.ajax({
             type: 'get',
             url: this.getResourceURL(discussionTitle.title),
@@ -30,10 +45,10 @@ var App = React.createClass({
             success: function(data) {
 				//testing json data 				
 				var threadList = data.data.children;
-				console.log(threadList);
+				//console.log(threadList);
 				for(var i =0 ; i < threadList.length ; ++i){
 					var title = threadList[i].data.title;
-					console.log(title);
+					//console.log(title);
 					var regex =  /.*(Episode|OVA).*\d+\s+.*discussion/i
 					
 					if(regex.test(title)){
@@ -96,7 +111,6 @@ var Header  = React.createClass({
 					<p>Find any past discussion thread of any anime perviously posted on reddit's anime subreddit. </p>
 					<p>Enter an anime title and hit serach!</p>
 				</div>
-
 			</div>
 		);
 	}
@@ -156,7 +170,26 @@ var SearchForm = React.createClass({
 	}
 });
 
+var TitleInfo  = React.createClass({
+
+
+	componentDidUpdate() {
+		ReactDOM.findDOMNode(this).scrollTop = 0;
+	},
+
+
+	render: function(){
+		return (
+			<div className = "titleInfo">
+				<h1> {this.props.title} </h1>
+			</div>
+		);
+	}
+});
+
 var ThreadListing = React.createClass({
+
+
 	render: function(){
 
 		var currentTitle = this.props.currentTitle;
@@ -171,11 +204,8 @@ var ThreadListing = React.createClass({
 		
 		return (
 			<div className = "ThreadListing">
-				<div className = "title">
-					<h1> {currentTitle} </h1>
-				</div>
-
-				<hr/>
+				<TitleInfo title = {currentTitle}/>
+				
 				{threadNodes}
 			</div>
 		);
