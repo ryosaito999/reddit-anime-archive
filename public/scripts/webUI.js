@@ -33,8 +33,8 @@ var App = React.createClass({
 				//console.log(threadList);
 				for(var i =0 ; i < threadList.length ; ++i){
 					var title = threadList[i].data.title;
-					//console.log(title);
-					var regex =  /.*(Episode|OVA).*\d+\s+.*discussion/i
+					console.log(title);
+					var regex =  /.*(Episode|OVA|Movie|Film).*(\d+|)\s+.*discussion/i
 					
 					if(regex.test(title)){
 
