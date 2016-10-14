@@ -105,9 +105,15 @@ var Header  = React.createClass({
 
 var SearchForm = React.createClass({
 	
-  	getInitialState: function(){
-		return {margin: 20 , title: ''} ;
+	log: function(){
+		console.log("test");
+		return;
 	},
+
+  	getInitialState: function(){
+		return { title: ''} ;
+	},
+
     componentDidMount: function() {
     	//from typahead docs
         var titles = new Bloodhound({
@@ -126,6 +132,11 @@ var SearchForm = React.createClass({
 		  name: 'titles',
 		  source: titles
 		});
+
+		$(this.refs.input).bind('typeahead:select', function(ev, suggestion) {
+  			console.log('Selection: ' + suggestion);
+		}).on("typeahead:selected typeahead:autocompleted", this.handleSubmit);
+
     },
 
 
@@ -133,27 +144,17 @@ var SearchForm = React.createClass({
   		this.setState( { title: e.target.value});
   	},
 
-  	returnRedditJSONResult: function(title){
-  		//reddit api comes in here
-  		//make a GET request using the data
-  	},
-
-  	returnJSON: function(url){
-  		
-  	},
-
-	handleSubmit: function(e){
+	handleSubmit: function(e, title){
 		e.preventDefault();
 		
-		var title = this.state.title.trim();
+		var title = title.trim();
 		if(!title){
 			return;
 		}
 
 		//send title to main app root class 
-		this.props.onFormSubmit({ title: title });
+		this.props.onFormSubmit({ title: title});
 		this.setState({title: "", margin: 0});
-
 	},
 
 	render: function(){
@@ -207,7 +208,6 @@ var ThreadListing = React.createClass({
 		return (
 			<div className = "ThreadListing">
 				<TitleInfo title = {currentTitle}/>
-				
 				{threadNodes}
 			</div>
 		);
