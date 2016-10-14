@@ -43,12 +43,13 @@ p{
 
 .searchForm{
     margin-left: 75px;
-
+    width: 100%
+    background-color: #4CAF50;
 }
 
-.inputBox{
+.searchBox{
   height: 38px;
-  width: 50%;
+  width: 100%;
   font-size: 18px;
   border-radius: 5px;
   border: 2px solid;

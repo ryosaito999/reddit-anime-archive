@@ -2,6 +2,17 @@ import sys
 import re
 import os
 
+def stringMods(line):
+	line = re.sub('[*]', '', line)
+	line = re.sub('^(\s)*', '', line)
+	line = re.sub('(\s)-(\s)Irregular(\s)threads', '', line)
+	line = re.sub('\"', '', line)
+	line = re.sub('\n', '', line)
+
+	fo.write("\"%s\",\n" %(line))
+	return
+
+
 fo = open("data.txt", "w")
 
 for file in os.listdir("data"):
@@ -19,14 +30,8 @@ for file in os.listdir("data"):
 			continue
 
 		elif re.match( r'^[*] [*][*].*[*][*]' , line, re.I) :
-			line = re.sub('[*]', '', line)
-			line = re.sub('^(\s)*', '', line)
-			#print line
-			fo.write(line)
+			stringMods(line)
 
 		elif re.match( r'^[*].* ' , line, re.I) :
-			line = re.sub('[*]', '', line)
-			line = re.sub('^(\s)*', '', line)
-			#print line
-			fo.write(line)
+			stringMods(line)
 

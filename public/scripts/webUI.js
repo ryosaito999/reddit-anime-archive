@@ -33,7 +33,7 @@ var App = React.createClass({
 				//console.log(threadList);
 				for(var i =0 ; i < threadList.length ; ++i){
 					var title = threadList[i].data.title;
-					console.log(title);
+					//console.log(title);
 					var regex =  /.*(Episode|OVA|Movie|Film).*(\d+|)\s+.*discussion/i
 					
 					if(regex.test(title)){
@@ -108,6 +108,26 @@ var SearchForm = React.createClass({
   	getInitialState: function(){
 		return {margin: 20 , title: ''} ;
 	},
+    componentDidMount: function() {
+    	//from typahead docs
+        var titles = new Bloodhound({
+            datumTokenizer: Bloodhound.tokenizers.whitespace,
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: data 
+         });
+
+        $(this.refs.input).typeahead({
+		  hint: false,
+		  highlight: true,
+		  minLength: 2
+		},
+		
+		{
+		  name: 'titles',
+		  source: titles
+		});
+    },
+
 
   	handleTitleChange: function(e) {
   		this.setState( { title: e.target.value});
@@ -139,18 +159,15 @@ var SearchForm = React.createClass({
 	render: function(){
 
 		return (
-			<form className="searchForm" onSubmit={this.handleSubmit} >
-				<input
-					className = "inputBox"
-					ref = "input"
-					type="text"
-					placeholder = "Enter an anime title"
-					value = {this.state.title}
-					onChange = {this.handleTitleChange} 
-				/>
-
-				<input className="submitBtn" type= "submit" value = "Post" />
-			</form>
+			//will bubble up without using form
+			<input
+				className = "searchBox"
+				ref = "input"
+				type="text"
+				placeholder = "Enter an anime title"
+				value = {this.state.title}
+				onChange = {this.handleTitleChange} 
+			/>
 		);
 	}
 });
