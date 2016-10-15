@@ -1,8 +1,7 @@
 
-
-
 # Reddit anime discussion thread archive
-Link: http://r-anime-archive.getforge.io/
+
+![Website](https://github.com/ryosaito999/reddit-anime-archive/blob/master/screenshots/screenshot1.png)
 
 Enter a title into the search bar and the site will try to automatically find all past discussion threads of the entered show. 
 
@@ -20,6 +19,7 @@ Also, due to my lack of experience in javascript / React, it may not be up to FO
   - Have a script crawl through reddit to complete list of titles
   - Clean up titles with symbols
   - MAL compatability / Lookup ? 
+  - Cleanup Readme
 
 # Design
 (Shoutouts to https://github.com/Antrikshy/The-MCU-Index for giving me an example) 
