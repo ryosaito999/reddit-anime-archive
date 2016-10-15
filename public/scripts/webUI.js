@@ -71,10 +71,13 @@ var App = React.createClass({
 
 		return (
 			<div className = "App">
-				<Header/>
-				<div className = "searchArea">
-					<SearchForm onFormSubmit = {this.onSubmit} />
+				<div className = "HeaderArea">
+					<Header/>
+					<div className = "searchArea">
+						<SearchForm onFormSubmit = {this.onSubmit} />
+					</div>
 				</div>
+
                 <ThreadListing dataList = {this.state.discussionList} currentTitle = {this.state.discussionTitle} />
 
 			</div>
@@ -91,10 +94,7 @@ var Header  = React.createClass({
 		return (
 			<div className = "header" ref="textHeader" >
 				<div className = "headerText">
-
 					<h1>R/Anime Discussion Archive</h1>
-					<p>Find any past discussion thread of any anime perviously posted on reddit's anime subreddit. </p>
-					<p>Enter an anime title and hit serach!</p>
 				</div>
 			</div>
 		);
@@ -133,9 +133,14 @@ var SearchForm = React.createClass({
 		  source: titles
 		});
 
+        //not sure why this works?????
 		$(this.refs.input).bind('typeahead:select', function(ev, suggestion) {
   			console.log('Selection: ' + suggestion);
 		}).on("typeahead:selected typeahead:autocompleted", this.handleSubmit);
+
+		//on enter key pressed, autocomplete first avaialbe result
+		
+
 
     },
 

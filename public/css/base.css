@@ -21,18 +21,20 @@ p{
 
 }
 
+.HeaderArea{
 
-
-.header {
   background: #2196F3;
   height: 100%;
   width: 100%;
-  padding-top:5px;
-  padding-bottom: 10px;
+  padding-top :150px;
+  padding-bottom: 117px;
+
 }
 
 .searchArea{
   padding-top: 20px;
+  padding-left: 33px;
+  background-color: 
 }
 
 .headerText{
@@ -40,18 +42,12 @@ p{
 }
 
 
-
-.searchForm{
-    margin-left: 75px;
-    width: 100%
-    background-color: #4CAF50;
-}
-
 .searchBox{
   height: 38px;
   width: 1000px;
   font-size: 18px;
   border-radius: 5px;
+  padding-left: 5px;
   border: 2px solid;
 
 }
