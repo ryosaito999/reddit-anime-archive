@@ -30,7 +30,7 @@ var App = React.createClass({
             success: function(data) {
 				//testing json data 				
 				var threadList = data.data.children;
-				//console.log(threadList);
+				console.log(threadList);
 				for(var i =0 ; i < threadList.length ; ++i){
 					var title = threadList[i].data.title;
 					//console.log(title);
@@ -44,8 +44,11 @@ var App = React.createClass({
 								url: threadList[i].data.url,
 								date: parseInt(JSON.stringify(threadList[i].data.created_utc)),
 								score: threadList[i].data.score,
-								key: threadList[i].id
+								key: threadList[i].data.id
+
 						}
+
+						//console.log(obj.key);
 
 						//console.log(obj.url)
 
@@ -213,7 +216,7 @@ var ThreadListing = React.createClass({
 		var threadNodes = this.props.dataList.map(
 			function(node){	
 				return(
-			        <Thread title={node.title} url = {node.url} score = {node.score} date = {node.date} key = {node.key}> </Thread>
+			        <Thread key = {node.key} title={node.title} url = {node.url} score = {node.score} date = {node.date} > </Thread>
 				);
 			}
 		);
