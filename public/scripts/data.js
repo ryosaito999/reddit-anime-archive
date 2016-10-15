@@ -1,6 +1,8 @@
 var data = [
 
-//TODO: Fix titles for 
+//TODO: - Fix titles for anime with different names compared to the list down here
+//		- Add movies
+//		- Add 
 
 "Ano Natsu de Matteru",
 "High School DxD",
