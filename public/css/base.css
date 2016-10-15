@@ -22,13 +22,22 @@ p{
 }
 
 .HeaderArea{
-
-  background: #2196F3;
-  height: 100%;
+  height: 400px;
   width: 100%;
-  padding-top :150px;
-  padding-bottom: 117px;
+  position: relative;
+  background-color: #90CAF9; 
+}
 
+.HeaderArea::after{
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  bottom: 0;
+  transform-origin: left bottom;
+  transform: skewY(1.2deg);
 }
 
 .searchArea{
@@ -38,6 +47,7 @@ p{
 }
 
 .headerText{
+  padding-top: 140px;
   margin-left: 33px;
 }
 

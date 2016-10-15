@@ -94,7 +94,7 @@ var Header  = React.createClass({
 		return (
 			<div className = "header" ref="textHeader" >
 				<div className = "headerText">
-					<h1>R/Anime Discussion Archive</h1>
+					<h1>R/Anime Episode Discussion Archive</h1>
 				</div>
 			</div>
 		);
