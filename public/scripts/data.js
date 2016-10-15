@@ -1,4 +1,7 @@
 var data = [
+
+//TODO: Fix titles for 
+
 "Ano Natsu de Matteru",
 "High School DxD",
 "Senki Zesshou Symphogear: Meteoroid-Falling, Burning, and Disappear, Then...",
@@ -7,7 +10,6 @@ var data = [
 "Hyouka",
 "Kokoro Connect",
 "Sword Art Online",
-"Sword Art Online dub ",
 "Yuru Yuri♪♪",
 "Chuunibyou demo Koi ga Shitai!",
 "Girls und Panzer",
