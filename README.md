@@ -24,6 +24,6 @@ Also, due to my lack of experience in javascript / React, it may not be up to FO
 # Design
 (Shoutouts to https://github.com/Antrikshy/The-MCU-Index for giving me an example) 
 
-RADA is built as a static react js website. When the user enters a prompt into the serachbox, it uses reddit API to perform a search and filter out all non episode discussion threads as best it can. I run an additional regex parser to filter any non matching thread titles and return the rest to the user. 
+RAA is built as a static react js website. When the user enters a prompt into the serachbox, it uses reddit API to perform a search and filter out all non episode discussion threads as best it can. I run an additional regex parser to filter any non matching thread titles and return the rest to the user. 
 
-The search box adapts typeahead, which is currently using a manually entered data set inside data.js. For now, update data.js to change the results typeahead will try to look for.
+The search box adapts typeahead/bloodhound, which is currently using a manually entered data set inside data.js. For now, update data.js to change the results typeahead will try to look for.
