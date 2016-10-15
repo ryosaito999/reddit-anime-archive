@@ -182,7 +182,7 @@ var SearchForm = React.createClass({
 				className = "searchBox"
 				ref = "input"
 				type="text"
-				placeholder = "Enter an anime title"
+				placeholder = "Lookup an anime title"
 				value = {this.state.title}
 				onChange = {this.handleTitleChange} 
 			/>
