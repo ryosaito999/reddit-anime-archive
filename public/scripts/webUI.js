@@ -138,8 +138,17 @@ var SearchForm = React.createClass({
   			console.log('Selection: ' + suggestion);
 		}).on("typeahead:selected typeahead:autocompleted", this.handleSubmit);
 
-		//on enter key pressed, autocomplete first avaialbe result
-		
+		//on enter key pressed, autocomplete first avaialbe result 
+        var searchBoxRef = $(this.refs.input);
+        searchBoxRef.keydown(function(e) {
+        	//if enter key is pressed
+            if (e.which == 13) { 
+                var dummyEvent = $.Event('keydown');
+                dummyEvent.which = dummyEvent.keyCode = 9; // replicate
+                searchBoxRef.trigger(dummyEvent);
+            }
+        });
+
 
 
     },
